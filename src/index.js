@@ -1,4 +1,4 @@
-import { domManipulation } from "./Dom";
+import { domManipulation,displayLoader } from "./Dom";
 import style from './style.css'
 let city='addis-ababa';
 function getDataFromAPI(city){
@@ -15,7 +15,7 @@ function getDataFromAPI(city){
 
 async function generateResponseObject(){
     let response=await getDataFromAPI(city);
-    console.log(city);
+    displayLoader();
     let responseJson=await response.json();
     let current=responseJson.current;
     let location=responseJson.location;
@@ -34,11 +34,12 @@ async function generateResponseObject(){
 function searchBasedOnLocation(event){
     event.preventDefault();
     city=document.getElementById('location').value;
-    generateResponseObject(city);
+    generateResponseObject();
 }
 
 let ok_btn=document.querySelector('.ok_btn');
 ok_btn.addEventListener('click',(event)=>{
+    displayLoader().classList.remove('loader-hidden');
     searchBasedOnLocation(event);
     domManipulation();
     });

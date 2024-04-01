@@ -1,6 +1,7 @@
 import {generateResponseObject } from ".";
 
 export async function domManipulation(){
+ 
     console.log(await generateResponseObject());
     let responseObj=await generateResponseObject();
     let headers=document.querySelectorAll('.container p');
@@ -17,6 +18,15 @@ export async function domManipulation(){
     }
     else{
         document.querySelector('body').style.background='rgb(211, 122, 198)';
+        document.querySelector('.loader').style.background='rgb(211, 122, 198)';
     }
     
+}
+export function displayLoader(){
+    const loader=document.querySelector('.loader');
+    loader.classList.add("loader-hidden");
+    loader.addEventListener("transitioned",()=>{
+    document.body.removeChild("loader");
+    });
+    return loader;
 }

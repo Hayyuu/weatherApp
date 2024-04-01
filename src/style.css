@@ -2,7 +2,7 @@ body{
     justify-items: center;
     align-items: center;
     display: grid;
-    grid-template:1fr 1fr/1fr;
+    grid-template:1fr 1fr 1fr/1fr;
 }
 .container{
     justify-items: center;
@@ -19,4 +19,34 @@ body{
 }
 .right{
     background-color: yellow;
+}
+.loader{
+    top:0;
+    left:0;
+    background-color: lightblue;
+    display:flex; 
+    align-items: center;
+    justify-items: center;
+    transition:opacity 0.95s,visibility 0.75s;
+}
+.loader::after{
+    content: "";
+    width:75px;
+    height:75px;
+    border:15px solid #dddd;
+    border-top-color:aqua;
+    border-radius: 50%;
+    animation:loader 0.75s ease infinite;
+}
+.loader-hidden{
+    opacity:0;
+    visibility: hidden;
+}
+@keyframes loader {
+    from{
+        transform: rotate(0turn);
+    }
+    to{
+        transform: rotate(1turn);
+    }
 }
