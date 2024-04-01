@@ -1,0 +1,22 @@
+body{
+    justify-items: center;
+    align-items: center;
+    display: grid;
+    grid-template:1fr 1fr/1fr;
+}
+.container{
+    justify-items: center;
+    align-items: center;
+    display: grid;
+    grid-template:1fr /1fr 1fr;
+    grid-gap:40px;
+}
+.container>div{
+    padding: 20px 80px ;
+}
+.left{
+    background-color: rgb(245, 80, 245);
+}
+.right{
+    background-color: yellow;
+}

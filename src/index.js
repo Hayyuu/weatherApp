@@ -1,6 +1,8 @@
-
+import { domManipulation } from "./Dom";
+import style from './style.css'
+let city='addis-ababa';
 function getDataFromAPI(city){
-    return promise=new Promise((resolve,reject)=>{
+    return new Promise((resolve,reject)=>{
         let data=fetch(`https://api.weatherapi.com/v1/current.json?key= 9e5625138d3a4a898ef82135242803&q=${city}`,{mode:'cors'});
         if(data){
             resolve(data);
@@ -11,7 +13,7 @@ function getDataFromAPI(city){
     })
 }
 
-async function generateResponseObject(city){
+async function generateResponseObject(){
     let response=await getDataFromAPI(city);
     console.log(city);
     let responseJson=await response.json();
@@ -27,19 +29,19 @@ async function generateResponseObject(city){
         'lat':location.lat,
         'long':location.long
     };
-    console.log(responseObj);
+    return responseObj;
 }
-
 function searchBasedOnLocation(event){
     event.preventDefault();
-    let city=document.getElementById('location').value;
+    city=document.getElementById('location').value;
     generateResponseObject(city);
 }
 
 let ok_btn=document.querySelector('.ok_btn');
 ok_btn.addEventListener('click',(event)=>{
     searchBasedOnLocation(event);
+    domManipulation();
     });
-
-generateResponseObject('addis-ababa');
-
+generateResponseObject().catch((err)=> console.log(err));
+domManipulation();
+export {generateResponseObject};
